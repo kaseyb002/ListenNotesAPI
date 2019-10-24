@@ -13,7 +13,7 @@ final class LNService {}
 extension LNService {
     
     static func call<T: Decodable>(_ endpoint: LNEndpoint,
-                                   parameters: AnyEncodable? = nil,
+                                   parameters: [String: Any]? = nil,
                                    callback: @escaping (Result<T, LNError>) -> ()) {
         precondition(ListenNotesAPI.Config.hasSetApiKey,
                      "ListenNotesAPI Key has not been set. Call with ListenNotesAPI.Config.set(apiKey: String)")
@@ -26,7 +26,7 @@ extension LNService {
                              cachePolicy: .returnCacheDataElseLoad,
                              timeoutInterval: 60)
         
-        req.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
         req.setValue(apiKey, forHTTPHeaderField: "X-ListenAPI-Key")
         req.httpMethod = endpoint.method.rawValue
         do {
@@ -98,28 +98,40 @@ extension LNService {
 // MARK: Encode Parameters
 extension URLRequest {
     
-    mutating func add(parameters: AnyEncodable?, method: HTTPMethod) throws {
+    mutating func add(parameters: [String: Any]?, method: HTTPMethod) throws {
         guard let parameters = parameters else { return }
         switch method {
         case .get:
-            break
+            guard
+                let originalUrl = url,
+                var urlComponents = URLComponents(string: originalUrl.absoluteString)
+                else { return }
+            
+            urlComponents.queryItems =  parameters.compactMap { key, value in
+                let string: String? = {
+                    if let bool = value as? Bool {
+                        return bool ? "1" : "0"
+                    }
+                    
+                    if let number = value as? NSNumber {
+                        return number.stringValue
+                    }
+                    
+                    if let string = value as? String {
+                        return string
+                    }
+                    
+                    return nil
+                }()
+                guard let stringValue = string else { return nil }
+                return URLQueryItem(name: key, value: stringValue)
+            }
+            
+            guard let newUrl = urlComponents.url else { return }
+            self.url = newUrl
         case .post:
-            let encoder = JSONEncoder()
-            httpBody = try encoder.encode(parameters)
+            let jsonData = try JSONSerialization.data(withJSONObject: parameters, options: [])
+            httpBody = jsonData
         }
-    }
-}
-
-// MARK: Encode Parameters
-struct AnyEncodable: Encodable {
-
-    private let _encode: (Encoder) throws -> Void
-    
-    public init<T: Encodable>(_ wrapped: T) {
-        _encode = wrapped.encode
-    }
-
-    func encode(to encoder: Encoder) throws {
-        try _encode(encoder)
     }
 }

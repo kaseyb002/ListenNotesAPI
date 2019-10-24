@@ -15,6 +15,50 @@ class ListenNotesAPITests: XCTestCase {
         ListenNotesAPI.Config.set(apiKey: apiKey)
     }
     
+    func testSearchPodcasts() {
+        let expectation = XCTestExpectation()
+        ListenNotesAPI.searchPodcasts(
+            withText: LNData.searchText,
+            filter: LNData.searchFilter
+        ) { result in
+            switch result {
+            case .success(let searchResults):
+                if searchResults.podcasts.isEmpty {
+                    XCTFail("No podcasts found")
+                }
+                searchResults.podcasts.map { $0.title }.forEach {
+                    print($0)
+                }
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.message)
+            }
+        }
+        wait(for: [expectation], timeout: defaultTimeout)
+    }
+    
+    func testSearchEpisodes() {
+        let expectation = XCTestExpectation()
+        ListenNotesAPI.searchEpisodes(
+            withText: LNData.searchText,
+            filter: LNData.searchFilter
+        ) { result in
+            switch result {
+            case .success(let searchResults):
+                if searchResults.episodes.isEmpty {
+                    XCTFail("No episodes found")
+                }
+                searchResults.episodes.map { $0.title }.forEach {
+                    print($0)
+                }
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.message)
+            }
+        }
+        wait(for: [expectation], timeout: defaultTimeout)
+    }
+    
     func testGetEpisode() {
         let expectation = XCTestExpectation()
         ListenNotesAPI.getEpisode(byId: LNData.episodeId) { result in
@@ -34,6 +78,9 @@ class ListenNotesAPITests: XCTestCase {
         ListenNotesAPI.getEpisodesBatch(withIds: LNData.episodeIds) { result in
             switch result {
             case .success(let episodes):
+                if episodes.isEmpty {
+                    XCTFail("No episodes found")
+                }
                 let titles = episodes.map { $0.title }
                 print(titles)
                 expectation.fulfill()
@@ -67,6 +114,9 @@ class ListenNotesAPITests: XCTestCase {
         ) { result in
             switch result {
             case .success(let podcasts):
+                if podcasts.isEmpty {
+                    XCTFail("No podcasts found")
+                }
                 let titles = podcasts.map { $0.title }
                 print(titles)
                 expectation.fulfill()
@@ -148,5 +198,18 @@ class ListenNotesAPITests: XCTestCase {
             1386234384,
             659155419,
         ]
+        static let searchText = "star wars"
+        static let searchFilter: LNSearchFilter = {
+            var filter = LNSearchFilter()
+            filter.sortBy = .mostRecent
+            filter.minMinuteLength = 30
+            filter.maxMinuteLength = 60
+            filter.searchInFields = [.title, .description]
+            let twoYears: TimeInterval = 60 * 60 * 24 * 365 * 2
+            let sixMonths: TimeInterval = twoYears / 4
+            filter.publishedAfter = Date().addingTimeInterval(-twoYears)
+            filter.publishedBefore = Date().addingTimeInterval(-sixMonths)
+            return filter
+        }()
     }
 }

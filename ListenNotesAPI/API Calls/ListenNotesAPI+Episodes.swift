@@ -40,7 +40,7 @@ extension ListenNotesAPI {
         let parse = convert(map: { (batch: LNEpisodeBatch) in batch.episodes},
                             callback: callback)
         LNService.call(.getEpisodesBatch,
-                       parameters: .init(params),
+                       parameters: params.params,
                        callback: parse)
     }
     
@@ -72,6 +72,10 @@ extension ListenNotesAPI {
             var container = encoder.container(keyedBy: CodingKeys.self)
             let idsString = ids.joined(separator: ",")
             try container.encode(idsString, forKey: .ids)
+        }
+        
+        var params: [String: Any] {
+            return [CodingKeys.ids.rawValue: ids.joined(separator: ",")]
         }
     }
 }

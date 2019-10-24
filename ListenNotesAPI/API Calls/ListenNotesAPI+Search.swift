@@ -18,7 +18,7 @@ extension ListenNotesAPI {
     ) {
         let params = LNSearchParams(q: text, type: .podcasts, filter: filter)
         LNService.call(.search,
-                       parameters: .init(params),
+                       parameters: params.params,
                        callback: callback)
     }
     
@@ -29,7 +29,7 @@ extension ListenNotesAPI {
     ) {
         let params = LNSearchParams(q: text, type: .episodes, filter: filter)
         LNService.call(.search,
-                       parameters: .init(params),
+                       parameters: params.params,
                        callback: callback)
     }
     
@@ -46,7 +46,7 @@ extension ListenNotesAPI {
                                      filterExplicit: filterExplicit)
         
         LNService.call(.typeahead,
-                       parameters: .init(params),
+                       parameters: params.params,
                        callback: callback)
     }
 }
@@ -59,9 +59,9 @@ extension ListenNotesAPI {
         let type: MediaType
         let filter: LNSearchFilter?
         
-        enum MediaType: Int {
-            case podcasts
-            case episodes
+        enum MediaType: String {
+            case podcasts = "podcast"
+            case episodes = "episode"
         }
         
         enum CodingKeys: String, CodingKey {
@@ -128,7 +128,61 @@ extension ListenNotesAPI {
                 }
             }
         }
+        
+        var params: [String: Any] {
+            var dict = [String: Any]()
+            dict[CodingKeys.q.rawValue] = q
+            dict[CodingKeys.type.rawValue] = type.rawValue
+            
+            guard let filter = filter else { return dict }
+            
+            filter.sortBy.map {
+                switch $0 {
+                case .relevance:
+                    break
+                case .mostRecent:
+                    dict[CodingKeys.sortBy.rawValue] = $0.rawValue
+                }
+            }
+            
+            if !filter.searchInFields.contains(.everything), !filter.searchInFields.isEmpty {
+                let searchFields = filter.searchInFields.map { $0.rawValue }.joined(separator: ",")
+                dict[CodingKeys.searchInFields.rawValue] = searchFields
+            }
+            
+            filter.minMinuteLength.map {
+                dict[CodingKeys.minMinuteLength.rawValue] = $0
+            }
+            
+            filter.minMinuteLength.map {
+                dict[CodingKeys.maxMinuteLength.rawValue] = $0
+            }
+            
+            filter.language.map {
+                dict[CodingKeys.language.rawValue] = $0
+            }
+            
+            if !filter.genreIds.isEmpty {
+                let ids = filter.genreIds.map { "\($0)" }.joined(separator: ",")
+                dict[CodingKeys.genreIds.rawValue] = ids
+            }
+            
+            filter.podcastId.map {
+                dict[CodingKeys.podcastId.rawValue] = $0
+            }
+            
+            filter.safeMode.map {
+                switch $0 {
+                case .off:
+                    break
+                case .filterExplicit:
+                    dict[CodingKeys.safeMode.rawValue] = $0.rawValue
+                }
+            }
+            return dict
+        }
     }
+    
     
     private struct LNTypeheadParams: Encodable {
         let q: String
@@ -146,12 +200,21 @@ extension ListenNotesAPI {
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(q, forKey: .q)
-            try container.encode(includePodcasts ? 1 : 0 ,
+            try container.encode(includePodcasts ? 1 : 0,
                                  forKey: .includePodcasts)
-            try container.encode(includeGenres ? 1 : 0 ,
+            try container.encode(includeGenres ? 1 : 0,
                                  forKey: .includeGenres)
-            try container.encode(filterExplicit ? 1 : 0 ,
+            try container.encode(filterExplicit ? 1 : 0,
                                  forKey: .filterExplicit)
+        }
+        
+        var params: [String: Any] {
+            var dict = [String: Any]()
+            dict[CodingKeys.q.rawValue] = q
+            dict[CodingKeys.includePodcasts.rawValue] = includePodcasts ? 1 : 0
+            dict[CodingKeys.includeGenres.rawValue] = includeGenres ? 1 : 0
+            dict[CodingKeys.filterExplicit.rawValue] = filterExplicit ? 1 : 0
+            return dict
         }
     }
 }

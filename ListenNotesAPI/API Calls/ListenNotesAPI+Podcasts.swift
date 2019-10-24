@@ -28,7 +28,7 @@ extension ListenNotesAPI {
         let parse = convert(map: { (batch: LNPodcastBatch) in batch.podcasts },
                             callback: callback)
         LNService.call(.getPodcastsBatch,
-                       parameters: .init(params),
+                       parameters: params.params,
                        callback: parse)
     }
 }
@@ -57,6 +57,24 @@ extension ListenNotesAPI {
             if let itunesString = iTunesIds?.map({ String($0) }).joined(separator: ",") {
                 try container.encode(itunesString, forKey: .iTunesIds)
             }
+        }
+        
+        var params: [String: Any] {
+            var dict = [String: Any]()
+            
+            if let idsString = ids?.joined(separator: ",") {
+                dict[CodingKeys.ids.rawValue] = idsString
+            }
+            
+            if let rssesString = rssUrls?.joined(separator: ",") {
+                dict[CodingKeys.rssUrls.rawValue] = rssesString
+            }
+            
+            if let itunesString = iTunesIds?.map({ String($0) }).joined(separator: ",") {
+                dict[CodingKeys.iTunesIds.rawValue] = itunesString
+            }
+            
+            return dict
         }
     }
     
