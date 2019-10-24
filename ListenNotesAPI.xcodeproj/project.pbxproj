@@ -10,6 +10,30 @@
 		2697CF21235F786200C8FB5A /* ListenNotesAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2697CF17235F786200C8FB5A /* ListenNotesAPI.framework */; };
 		2697CF26235F786200C8FB5A /* ListenNotesAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF25235F786200C8FB5A /* ListenNotesAPITests.swift */; };
 		2697CF28235F786200C8FB5A /* ListenNotesAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 2697CF1A235F786200C8FB5A /* ListenNotesAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2697CF32235F787A00C8FB5A /* LNPodcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF31235F787A00C8FB5A /* LNPodcast.swift */; };
+		2697CF34235F7B6300C8FB5A /* LNEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF33235F7B6300C8FB5A /* LNEpisode.swift */; };
+		2697CF36235F7D6500C8FB5A /* LNPodcast+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF35235F7D6500C8FB5A /* LNPodcast+Extensions.swift */; };
+		2697CF38235F7D6F00C8FB5A /* LNEpisode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF37235F7D6F00C8FB5A /* LNEpisode+Extensions.swift */; };
+		2697CF3A235F7EE900C8FB5A /* LNGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF39235F7EE900C8FB5A /* LNGenre.swift */; };
+		2697CF3E235F7F6E00C8FB5A /* LNRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF3D235F7F6E00C8FB5A /* LNRegion.swift */; };
+		2697CF40235F7FC600C8FB5A /* LNTypeahead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF3F235F7FC600C8FB5A /* LNTypeahead.swift */; };
+		2697CF42235F803500C8FB5A /* LNSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF41235F803500C8FB5A /* LNSearchResults.swift */; };
+		2697CF44235F810E00C8FB5A /* ListenNotesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF43235F810E00C8FB5A /* ListenNotesAPI.swift */; };
+		2697CF46235F81E900C8FB5A /* LNError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF45235F81E900C8FB5A /* LNError.swift */; };
+		2697CF48235F833D00C8FB5A /* LNEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF47235F833D00C8FB5A /* LNEndpoint.swift */; };
+		2697CF4A235F8A2300C8FB5A /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF49235F8A2300C8FB5A /* HTTPMethod.swift */; };
+		2697CF4C235F8B0A00C8FB5A /* ListenNotesAPI+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF4B235F8B0A00C8FB5A /* ListenNotesAPI+Config.swift */; };
+		2697CF4E235F8D9600C8FB5A /* LNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF4D235F8D9600C8FB5A /* LNService.swift */; };
+		2697CF53235F983A00C8FB5A /* LNSearchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF51235F983A00C8FB5A /* LNSearchFilter.swift */; };
+		2697CF5A235FBA5000C8FB5A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF59235FBA5000C8FB5A /* Secrets.swift */; };
+		2697CF5C235FC33500C8FB5A /* LNPodcastExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF5B235FC33500C8FB5A /* LNPodcastExtras.swift */; };
+		2697CF5E2360ABD900C8FB5A /* ListenNotesAPI+Podcasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF5D2360ABD900C8FB5A /* ListenNotesAPI+Podcasts.swift */; };
+		2697CF622360AC2000C8FB5A /* ListenNotesAPI+Regions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF612360AC2000C8FB5A /* ListenNotesAPI+Regions.swift */; };
+		2697CF642360AC2F00C8FB5A /* ListenNotesAPI+Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF632360AC2F00C8FB5A /* ListenNotesAPI+Genres.swift */; };
+		2697CF662360AC3800C8FB5A /* ListenNotesAPI+Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF652360AC3800C8FB5A /* ListenNotesAPI+Languages.swift */; };
+		2697CF682360AC4100C8FB5A /* ListenNotesAPI+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF672360AC4100C8FB5A /* ListenNotesAPI+Search.swift */; };
+		2697CF6A2360AC4900C8FB5A /* ListenNotesAPI+Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF692360AC4900C8FB5A /* ListenNotesAPI+Episodes.swift */; };
+		2697CF6D2360B09F00C8FB5A /* Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF6C2360B09F00C8FB5A /* Convert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +53,30 @@
 		2697CF20235F786200C8FB5A /* ListenNotesAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ListenNotesAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2697CF25235F786200C8FB5A /* ListenNotesAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenNotesAPITests.swift; sourceTree = "<group>"; };
 		2697CF27235F786200C8FB5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2697CF31235F787A00C8FB5A /* LNPodcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNPodcast.swift; sourceTree = "<group>"; };
+		2697CF33235F7B6300C8FB5A /* LNEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNEpisode.swift; sourceTree = "<group>"; };
+		2697CF35235F7D6500C8FB5A /* LNPodcast+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LNPodcast+Extensions.swift"; sourceTree = "<group>"; };
+		2697CF37235F7D6F00C8FB5A /* LNEpisode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LNEpisode+Extensions.swift"; sourceTree = "<group>"; };
+		2697CF39235F7EE900C8FB5A /* LNGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNGenre.swift; sourceTree = "<group>"; };
+		2697CF3D235F7F6E00C8FB5A /* LNRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNRegion.swift; sourceTree = "<group>"; };
+		2697CF3F235F7FC600C8FB5A /* LNTypeahead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNTypeahead.swift; sourceTree = "<group>"; };
+		2697CF41235F803500C8FB5A /* LNSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNSearchResults.swift; sourceTree = "<group>"; };
+		2697CF43235F810E00C8FB5A /* ListenNotesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenNotesAPI.swift; sourceTree = "<group>"; };
+		2697CF45235F81E900C8FB5A /* LNError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNError.swift; sourceTree = "<group>"; };
+		2697CF47235F833D00C8FB5A /* LNEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNEndpoint.swift; sourceTree = "<group>"; };
+		2697CF49235F8A2300C8FB5A /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		2697CF4B235F8B0A00C8FB5A /* ListenNotesAPI+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Config.swift"; sourceTree = "<group>"; };
+		2697CF4D235F8D9600C8FB5A /* LNService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNService.swift; sourceTree = "<group>"; };
+		2697CF51235F983A00C8FB5A /* LNSearchFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSearchFilter.swift; sourceTree = "<group>"; };
+		2697CF59235FBA5000C8FB5A /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		2697CF5B235FC33500C8FB5A /* LNPodcastExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNPodcastExtras.swift; sourceTree = "<group>"; };
+		2697CF5D2360ABD900C8FB5A /* ListenNotesAPI+Podcasts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Podcasts.swift"; sourceTree = "<group>"; };
+		2697CF612360AC2000C8FB5A /* ListenNotesAPI+Regions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Regions.swift"; sourceTree = "<group>"; };
+		2697CF632360AC2F00C8FB5A /* ListenNotesAPI+Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Genres.swift"; sourceTree = "<group>"; };
+		2697CF652360AC3800C8FB5A /* ListenNotesAPI+Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Languages.swift"; sourceTree = "<group>"; };
+		2697CF672360AC4100C8FB5A /* ListenNotesAPI+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Search.swift"; sourceTree = "<group>"; };
+		2697CF692360AC4900C8FB5A /* ListenNotesAPI+Episodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Episodes.swift"; sourceTree = "<group>"; };
+		2697CF6C2360B09F00C8FB5A /* Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +120,11 @@
 			isa = PBXGroup;
 			children = (
 				2697CF1A235F786200C8FB5A /* ListenNotesAPI.h */,
+				2697CF43235F810E00C8FB5A /* ListenNotesAPI.swift */,
+				2697CF4B235F8B0A00C8FB5A /* ListenNotesAPI+Config.swift */,
+				2697CF602360ABE700C8FB5A /* API Calls */,
+				2697CF6B2360AD6C00C8FB5A /* Networking */,
+				2697CF3B235F7F2D00C8FB5A /* Model */,
 				2697CF1B235F786200C8FB5A /* Info.plist */,
 			);
 			path = ListenNotesAPI;
@@ -81,9 +134,60 @@
 			isa = PBXGroup;
 			children = (
 				2697CF25235F786200C8FB5A /* ListenNotesAPITests.swift */,
+				2697CF59235FBA5000C8FB5A /* Secrets.swift */,
 				2697CF27235F786200C8FB5A /* Info.plist */,
 			);
 			path = ListenNotesAPITests;
+			sourceTree = "<group>";
+		};
+		2697CF3B235F7F2D00C8FB5A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2697CF31235F787A00C8FB5A /* LNPodcast.swift */,
+				2697CF5B235FC33500C8FB5A /* LNPodcastExtras.swift */,
+				2697CF33235F7B6300C8FB5A /* LNEpisode.swift */,
+				2697CF39235F7EE900C8FB5A /* LNGenre.swift */,
+				2697CF3D235F7F6E00C8FB5A /* LNRegion.swift */,
+				2697CF3F235F7FC600C8FB5A /* LNTypeahead.swift */,
+				2697CF41235F803500C8FB5A /* LNSearchResults.swift */,
+				2697CF51235F983A00C8FB5A /* LNSearchFilter.swift */,
+				2697CF3C235F7F3300C8FB5A /* Extensions */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2697CF3C235F7F3300C8FB5A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2697CF35235F7D6500C8FB5A /* LNPodcast+Extensions.swift */,
+				2697CF37235F7D6F00C8FB5A /* LNEpisode+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2697CF602360ABE700C8FB5A /* API Calls */ = {
+			isa = PBXGroup;
+			children = (
+				2697CF672360AC4100C8FB5A /* ListenNotesAPI+Search.swift */,
+				2697CF5D2360ABD900C8FB5A /* ListenNotesAPI+Podcasts.swift */,
+				2697CF692360AC4900C8FB5A /* ListenNotesAPI+Episodes.swift */,
+				2697CF632360AC2F00C8FB5A /* ListenNotesAPI+Genres.swift */,
+				2697CF612360AC2000C8FB5A /* ListenNotesAPI+Regions.swift */,
+				2697CF652360AC3800C8FB5A /* ListenNotesAPI+Languages.swift */,
+				2697CF6C2360B09F00C8FB5A /* Convert.swift */,
+			);
+			path = "API Calls";
+			sourceTree = "<group>";
+		};
+		2697CF6B2360AD6C00C8FB5A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				2697CF45235F81E900C8FB5A /* LNError.swift */,
+				2697CF47235F833D00C8FB5A /* LNEndpoint.swift */,
+				2697CF4D235F8D9600C8FB5A /* LNService.swift */,
+				2697CF49235F8A2300C8FB5A /* HTTPMethod.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +252,7 @@
 				TargetAttributes = {
 					2697CF16235F786200C8FB5A = {
 						CreatedOnToolsVersion = 11.1;
+						LastSwiftMigration = 1110;
 					};
 					2697CF1F235F786200C8FB5A = {
 						CreatedOnToolsVersion = 11.1;
@@ -195,6 +300,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2697CF46235F81E900C8FB5A /* LNError.swift in Sources */,
+				2697CF6D2360B09F00C8FB5A /* Convert.swift in Sources */,
+				2697CF4E235F8D9600C8FB5A /* LNService.swift in Sources */,
+				2697CF36235F7D6500C8FB5A /* LNPodcast+Extensions.swift in Sources */,
+				2697CF642360AC2F00C8FB5A /* ListenNotesAPI+Genres.swift in Sources */,
+				2697CF662360AC3800C8FB5A /* ListenNotesAPI+Languages.swift in Sources */,
+				2697CF3E235F7F6E00C8FB5A /* LNRegion.swift in Sources */,
+				2697CF5C235FC33500C8FB5A /* LNPodcastExtras.swift in Sources */,
+				2697CF682360AC4100C8FB5A /* ListenNotesAPI+Search.swift in Sources */,
+				2697CF44235F810E00C8FB5A /* ListenNotesAPI.swift in Sources */,
+				2697CF42235F803500C8FB5A /* LNSearchResults.swift in Sources */,
+				2697CF40235F7FC600C8FB5A /* LNTypeahead.swift in Sources */,
+				2697CF622360AC2000C8FB5A /* ListenNotesAPI+Regions.swift in Sources */,
+				2697CF32235F787A00C8FB5A /* LNPodcast.swift in Sources */,
+				2697CF4C235F8B0A00C8FB5A /* ListenNotesAPI+Config.swift in Sources */,
+				2697CF3A235F7EE900C8FB5A /* LNGenre.swift in Sources */,
+				2697CF53235F983A00C8FB5A /* LNSearchFilter.swift in Sources */,
+				2697CF4A235F8A2300C8FB5A /* HTTPMethod.swift in Sources */,
+				2697CF34235F7B6300C8FB5A /* LNEpisode.swift in Sources */,
+				2697CF5E2360ABD900C8FB5A /* ListenNotesAPI+Podcasts.swift in Sources */,
+				2697CF48235F833D00C8FB5A /* LNEndpoint.swift in Sources */,
+				2697CF38235F7D6F00C8FB5A /* LNEpisode+Extensions.swift in Sources */,
+				2697CF6A2360AC4900C8FB5A /* ListenNotesAPI+Episodes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2697CF26235F786200C8FB5A /* ListenNotesAPITests.swift in Sources */,
+				2697CF5A235FBA5000C8FB5A /* Secrets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +469,7 @@
 		2697CF2C235F786200C8FB5A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -355,6 +485,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kaseybaughan.ListenNotesAPI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -363,6 +494,7 @@
 		2697CF2D235F786200C8FB5A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -386,6 +518,7 @@
 		2697CF2F235F786200C8FB5A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ListenNotesAPITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -403,6 +536,7 @@
 		2697CF30235F786200C8FB5A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ListenNotesAPITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
