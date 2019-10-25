@@ -11,6 +11,13 @@ import Foundation
 // MARK: API Calls
 extension ListenNotesAPI {
     
+    /**
+    Full-text search on podcasts
+    
+    - Parameter withText: Text to search with.
+     
+    - Parameter filter: Add an optional filter to curate results.
+    */
     public static func searchPodcasts(
         withText text: String,
         filter: LNSearchFilter? = nil,
@@ -22,6 +29,13 @@ extension ListenNotesAPI {
                        callback: callback)
     }
     
+    /**
+    Full-text search on episodes
+    
+    - Parameter withText: Text to search with.
+     
+    - Parameter filter: Add an optional filter to curate results.
+    */
     public static func searchEpisodes(
         withText text: String,
         filter: LNSearchFilter? = nil,
@@ -33,6 +47,24 @@ extension ListenNotesAPI {
                        callback: callback)
     }
     
+    /**
+    Get search suggestions based on search text
+    
+    - Parameter withText: Text to search with.
+     
+    - Parameter includePodcasts: Include podcast suggestions.
+     Note: This only searches podcast title and publisher
+     and returns very limited info of 5 podcasts.
+     It's a bit slow to autosuggest podcasts,
+     so it's off by default. If `includePodcasts` is `true`,
+     you can also pass iTunes id (e.g., 474722933)
+     to the text parameter to fetch podcast meta data.
+     
+    - Parameter includeGenres: Include genre suggestions
+     
+    - Parameter filterExplicit: Exclude results with explicit content.
+     Note: Only works when `includePodcasts` is `true`.
+    */
     public static func typehead(
         withText text: String,
         includePodcasts: Bool = false,
@@ -84,13 +116,11 @@ extension ListenNotesAPI {
             try container.encode(q, forKey: .q)
             try container.encode(type.rawValue, forKey: .type)
             guard let filter = filter else { return }
-            try filter.sortBy.map {
-                switch $0 {
-                case .relevance:
-                    break
-                case .mostRecent:
-                    try container.encode($0.rawValue, forKey: .sortBy)
-                }
+            switch filter.sortBy {
+            case .relevance:
+                break
+            case .mostRecent:
+                try container.encode(filter.sortBy.rawValue, forKey: .sortBy)
             }
             
             if !filter.searchInFields.contains(.everything), !filter.searchInFields.isEmpty {
@@ -119,13 +149,11 @@ extension ListenNotesAPI {
                 try container.encode($0, forKey: .podcastId)
             }
             
-            try filter.safeMode.map {
-                switch $0 {
-                case .off:
-                    break
-                case .filterExplicit:
-                    try container.encode($0.rawValue, forKey: .safeMode)
-                }
+            switch filter.safeMode {
+            case .off:
+                break
+            case .filterExplicit:
+                try container.encode(filter.safeMode.rawValue, forKey: .safeMode)
             }
         }
         
@@ -136,13 +164,11 @@ extension ListenNotesAPI {
             
             guard let filter = filter else { return dict }
             
-            filter.sortBy.map {
-                switch $0 {
-                case .relevance:
-                    break
-                case .mostRecent:
-                    dict[CodingKeys.sortBy.rawValue] = $0.rawValue
-                }
+            switch filter.sortBy {
+            case .relevance:
+                break
+            case .mostRecent:
+                dict[CodingKeys.sortBy.rawValue] = filter.sortBy.rawValue
             }
             
             if !filter.searchInFields.contains(.everything), !filter.searchInFields.isEmpty {
@@ -171,14 +197,13 @@ extension ListenNotesAPI {
                 dict[CodingKeys.podcastId.rawValue] = $0
             }
             
-            filter.safeMode.map {
-                switch $0 {
-                case .off:
-                    break
-                case .filterExplicit:
-                    dict[CodingKeys.safeMode.rawValue] = $0.rawValue
-                }
+            switch filter.safeMode {
+            case .off:
+                break
+            case .filterExplicit:
+                dict[CodingKeys.safeMode.rawValue] = filter.safeMode.rawValue
             }
+            
             return dict
         }
     }

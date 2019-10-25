@@ -31,11 +31,27 @@ extension ListenNotesAPI {
                        parameters: params.params,
                        callback: parse)
     }
+    
+    public static func getBestPodcasts(
+        byGenreId genreId: Int? = nil,
+        page: Int? = nil,
+        regionCode: String? = nil,
+        filterExplicit: Bool = false,
+        callback: @escaping (Result<LNBestPodcasts, LNError>) -> ()
+    ) {
+        let params = LNBestPodcastParams(genreId: genreId,
+                                         page: page,
+                                         regionCode: regionCode,
+                                         filterExplicit: filterExplicit)
+        LNService.call(.bestPodcasts,
+                       parameters: params.params,
+                       callback: callback)
+    }
 }
 
 extension ListenNotesAPI {
     
-    private struct LNPodcastBatchParams: Encodable {
+    private struct LNPodcastBatchParams {
         let ids: [String]?
         let rssUrls: [String]?
         let iTunesIds: [Int]?
@@ -44,19 +60,6 @@ extension ListenNotesAPI {
             case ids
             case rssUrls = "rsses"
             case iTunesIds = "itunes_ids"
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            if let idsString = ids?.joined(separator: ",") {
-                try container.encode(idsString, forKey: .ids)
-            }
-            if let rssesString = rssUrls?.joined(separator: ",") {
-                try container.encode(rssesString, forKey: .rssUrls)
-            }
-            if let itunesString = iTunesIds?.map({ String($0) }).joined(separator: ",") {
-                try container.encode(itunesString, forKey: .iTunesIds)
-            }
         }
         
         var params: [String: Any] {
@@ -80,5 +83,41 @@ extension ListenNotesAPI {
     
     private struct LNPodcastBatch: Codable {
         let podcasts: [LNPodcast]
+    }
+    
+    private struct LNBestPodcastParams {
+        let genreId: Int?
+        let page: Int?
+        let regionCode: String?
+        let filterExplicit: Bool
+        
+        enum CodingKeys: String, CodingKey {
+            case genreId = "genre_id"
+            case page
+            case regionCode = "region_code"
+            case filterExplicit = "safe_mode"
+        }
+        
+        var params: [String: Any] {
+            var dict = [String: Any]()
+            
+            genreId.map {
+                dict[CodingKeys.genreId.rawValue] = String($0)
+            }
+            
+            page.map {
+                dict[CodingKeys.page.rawValue] = String($0)
+            }
+            
+            regionCode.map {
+                dict[CodingKeys.regionCode.rawValue] = $0
+            }
+            
+            if filterExplicit {
+                dict[CodingKeys.filterExplicit.rawValue] = filterExplicit
+            }
+            
+            return dict
+        }
     }
 }

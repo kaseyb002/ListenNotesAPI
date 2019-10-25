@@ -126,6 +126,49 @@ class ListenNotesAPITests: XCTestCase {
         }
         wait(for: [expectation], timeout: defaultTimeout)
     }
+    
+    func testGetBestPodcasts() {
+        let expectation = XCTestExpectation()
+        ListenNotesAPI.getBestPodcasts { result in
+            switch result {
+            case .success(let bestPodcasts):
+                let podcasts = bestPodcasts.podcasts
+                if podcasts.isEmpty {
+                    XCTFail("No podcasts found")
+                }
+                let titles = podcasts.map { $0.title }
+                print(titles)
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.message)
+            }
+        }
+        wait(for: [expectation], timeout: defaultTimeout)
+    }
+    
+    func testGetBestPodcastsInGenre() {
+        let expectation = XCTestExpectation()
+        ListenNotesAPI.getBestPodcasts(
+            byGenreId: LNData.genreId,
+            page: LNData.page,
+            regionCode: LNData.regionCode,
+            filterExplicit: true
+        ) { result in
+            switch result {
+            case .success(let bestPodcasts):
+                let podcasts = bestPodcasts.podcasts
+                if podcasts.isEmpty {
+                    XCTFail("No podcasts found")
+                }
+                let titles = podcasts.map { $0.title }
+                print(titles)
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.message)
+            }
+        }
+        wait(for: [expectation], timeout: defaultTimeout)
+    }
 
     func testGetGenres() {
         let expectation = XCTestExpectation()
@@ -211,5 +254,8 @@ class ListenNotesAPITests: XCTestCase {
             filter.publishedBefore = Date().addingTimeInterval(-sixMonths)
             return filter
         }()
+        static let genreId = 97
+        static let page = 2
+        static let regionCode = "us"
     }
 }

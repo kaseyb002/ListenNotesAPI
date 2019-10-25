@@ -12,7 +12,7 @@ import Foundation
 extension ListenNotesAPI {
     
     /**
-     Fetch data for an episode by id
+     Fetch an episode by id
      
      - Parameter id: ListenNotes `id` of the episode you want.
      */
@@ -24,7 +24,7 @@ extension ListenNotesAPI {
     }
     
     /**
-     Batch fetch data for up to 10 episodes
+     Batch fetch for up to 10 episodes
      
      This endpoint could be used to implement custom playlists for individual episodes.
      

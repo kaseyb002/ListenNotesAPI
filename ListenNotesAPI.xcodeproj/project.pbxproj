@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0328297723635CCD00D639B8 /* LNBestPodcasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328297623635CCD00D639B8 /* LNBestPodcasts.swift */; };
 		2697CF21235F786200C8FB5A /* ListenNotesAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2697CF17235F786200C8FB5A /* ListenNotesAPI.framework */; };
 		2697CF26235F786200C8FB5A /* ListenNotesAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF25235F786200C8FB5A /* ListenNotesAPITests.swift */; };
 		2697CF28235F786200C8FB5A /* ListenNotesAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 2697CF1A235F786200C8FB5A /* ListenNotesAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,7 +26,6 @@
 		2697CF4C235F8B0A00C8FB5A /* ListenNotesAPI+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF4B235F8B0A00C8FB5A /* ListenNotesAPI+Config.swift */; };
 		2697CF4E235F8D9600C8FB5A /* LNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF4D235F8D9600C8FB5A /* LNService.swift */; };
 		2697CF53235F983A00C8FB5A /* LNSearchFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF51235F983A00C8FB5A /* LNSearchFilter.swift */; };
-		2697CF5A235FBA5000C8FB5A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF59235FBA5000C8FB5A /* Secrets.swift */; };
 		2697CF5C235FC33500C8FB5A /* LNPodcastExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF5B235FC33500C8FB5A /* LNPodcastExtras.swift */; };
 		2697CF5E2360ABD900C8FB5A /* ListenNotesAPI+Podcasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF5D2360ABD900C8FB5A /* ListenNotesAPI+Podcasts.swift */; };
 		2697CF622360AC2000C8FB5A /* ListenNotesAPI+Regions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF612360AC2000C8FB5A /* ListenNotesAPI+Regions.swift */; };
@@ -47,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0328297623635CCD00D639B8 /* LNBestPodcasts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNBestPodcasts.swift; sourceTree = "<group>"; };
 		2697CF17235F786200C8FB5A /* ListenNotesAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ListenNotesAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2697CF1A235F786200C8FB5A /* ListenNotesAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListenNotesAPI.h; sourceTree = "<group>"; };
 		2697CF1B235F786200C8FB5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,7 +69,6 @@
 		2697CF4B235F8B0A00C8FB5A /* ListenNotesAPI+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Config.swift"; sourceTree = "<group>"; };
 		2697CF4D235F8D9600C8FB5A /* LNService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNService.swift; sourceTree = "<group>"; };
 		2697CF51235F983A00C8FB5A /* LNSearchFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LNSearchFilter.swift; sourceTree = "<group>"; };
-		2697CF59235FBA5000C8FB5A /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		2697CF5B235FC33500C8FB5A /* LNPodcastExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LNPodcastExtras.swift; sourceTree = "<group>"; };
 		2697CF5D2360ABD900C8FB5A /* ListenNotesAPI+Podcasts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Podcasts.swift"; sourceTree = "<group>"; };
 		2697CF612360AC2000C8FB5A /* ListenNotesAPI+Regions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Regions.swift"; sourceTree = "<group>"; };
@@ -134,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				2697CF25235F786200C8FB5A /* ListenNotesAPITests.swift */,
-				2697CF59235FBA5000C8FB5A /* Secrets.swift */,
 				2697CF27235F786200C8FB5A /* Info.plist */,
 			);
 			path = ListenNotesAPITests;
@@ -150,6 +149,7 @@
 				2697CF3D235F7F6E00C8FB5A /* LNRegion.swift */,
 				2697CF3F235F7FC600C8FB5A /* LNTypeahead.swift */,
 				2697CF41235F803500C8FB5A /* LNSearchResults.swift */,
+				0328297623635CCD00D639B8 /* LNBestPodcasts.swift */,
 				2697CF51235F983A00C8FB5A /* LNSearchFilter.swift */,
 				2697CF3C235F7F3300C8FB5A /* Extensions */,
 			);
@@ -308,6 +308,7 @@
 				2697CF662360AC3800C8FB5A /* ListenNotesAPI+Languages.swift in Sources */,
 				2697CF3E235F7F6E00C8FB5A /* LNRegion.swift in Sources */,
 				2697CF5C235FC33500C8FB5A /* LNPodcastExtras.swift in Sources */,
+				0328297723635CCD00D639B8 /* LNBestPodcasts.swift in Sources */,
 				2697CF682360AC4100C8FB5A /* ListenNotesAPI+Search.swift in Sources */,
 				2697CF44235F810E00C8FB5A /* ListenNotesAPI.swift in Sources */,
 				2697CF42235F803500C8FB5A /* LNSearchResults.swift in Sources */,
@@ -331,7 +332,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2697CF26235F786200C8FB5A /* ListenNotesAPITests.swift in Sources */,
-				2697CF5A235FBA5000C8FB5A /* Secrets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

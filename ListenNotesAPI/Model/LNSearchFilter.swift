@@ -2,13 +2,13 @@ import Foundation
 
 public struct LNSearchFilter {
     
-    var sortBy: SortBy?
+    var sortBy: SortBy = .relevance
     var searchInFields: Set<Field> = [.everything]
     var minMinuteLength: Int?
     var maxMinuteLength: Int?
     var publishedAfter: Date?
     var publishedBefore: Date?
-    var safeMode: SafeMode?
+    var safeMode: SafeMode = .off
     var language: String?
     var genreIds = [Int]()
     var podcastId: String?
