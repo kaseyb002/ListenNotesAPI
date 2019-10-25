@@ -17,7 +17,7 @@ public struct LNPodcast: Codable {
     let genreIds: [Int]
     let iTunesId: Int
     let publisher: String
-    let thumbnail: String
+    let thumbnail: URL
     let description: String
     let totalEpisodes: Int
     let listenNotesUrl: URL
@@ -52,7 +52,7 @@ public struct LNPodcast: Codable {
         genreIds = try values.decode([Int].self, forKey: .genreIds)
         iTunesId = try values.decode(Int.self, forKey: .iTunesId)
         publisher = try LNPodcast.parsePublisher(from: decoder)
-        thumbnail = try values.decode(String.self, forKey: .thumbnail)
+        thumbnail = try values.decode(URL.self, forKey: .thumbnail)
         description = try LNPodcast.parseDescription(from: decoder)
         totalEpisodes = try values.decode(Int.self, forKey: .totalEpisodes)
         listenNotesUrl = try values.decode(URL.self, forKey: .listenNotesUrl)

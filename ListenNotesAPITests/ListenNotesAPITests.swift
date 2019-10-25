@@ -12,7 +12,7 @@ import XCTest
 class ListenNotesAPITests: XCTestCase {
 
     override func setUp() {
-        ListenNotesAPI.Config.set(apiKey: apiKey)
+        ListenNotesAPI.Config.set(apiKey: "YOUR_API_KEY")
     }
     
     func testSearchPodcasts() {

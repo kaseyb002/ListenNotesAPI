@@ -16,6 +16,7 @@ public struct LNError: Error {
         case missingAPIKey
         case notFound
         case unauthorized
+        case forbidden
         case serverError
         case badRequest
         case parsingError(String?)
@@ -34,6 +35,8 @@ extension LNError {
             return "Not Found"
         case .unauthorized:
             return "Unauthorized"
+        case .forbidden:
+            return "Forbidden"
         case .serverError:
             return "ListenNotes Server Error"
         case .badRequest:

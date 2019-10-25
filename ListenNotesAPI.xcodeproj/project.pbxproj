@@ -174,7 +174,6 @@
 				2697CF632360AC2F00C8FB5A /* ListenNotesAPI+Genres.swift */,
 				2697CF612360AC2000C8FB5A /* ListenNotesAPI+Regions.swift */,
 				2697CF652360AC3800C8FB5A /* ListenNotesAPI+Languages.swift */,
-				2697CF6C2360B09F00C8FB5A /* Convert.swift */,
 			);
 			path = "API Calls";
 			sourceTree = "<group>";
@@ -186,6 +185,7 @@
 				2697CF47235F833D00C8FB5A /* LNEndpoint.swift */,
 				2697CF4D235F8D9600C8FB5A /* LNService.swift */,
 				2697CF49235F8A2300C8FB5A /* HTTPMethod.swift */,
+				2697CF6C2360B09F00C8FB5A /* Convert.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";

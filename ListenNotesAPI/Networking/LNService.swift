@@ -26,9 +26,10 @@ extension LNService {
                              cachePolicy: .returnCacheDataElseLoad,
                              timeoutInterval: 60)
         
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         req.setValue(apiKey, forHTTPHeaderField: "X-ListenAPI-Key")
         req.httpMethod = endpoint.method.rawValue
+        
         do {
             try req.add(parameters: parameters, method: endpoint.method)
         } catch {
@@ -130,8 +131,14 @@ extension URLRequest {
             guard let newUrl = urlComponents.url else { return }
             self.url = newUrl
         case .post:
-            let jsonData = try JSONSerialization.data(withJSONObject: parameters, options: [])
-            httpBody = jsonData
+            let string: String = {
+                var string = ""
+                for (key, value) in parameters {
+                    string += "\(key)=\(value),"
+                }
+                return string
+            }()
+            httpBody = string.data(using: .utf8)
         }
     }
 }
