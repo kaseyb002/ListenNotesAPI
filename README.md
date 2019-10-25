@@ -4,9 +4,7 @@ Swift wrapper for ListenNotesAPI
 ## Example
 
 ```swift
-ListenNotesAPI.searchPodcasts(
-    withText: "star wars"
-) { result in
+ListenNotesAPI.searchPodcasts(withText: "star wars") { result in
     switch result {
     case .success(let searchResults):
         let podcasts = searchResults.podcasts
