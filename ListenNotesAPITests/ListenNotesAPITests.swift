@@ -10,16 +10,22 @@ import XCTest
 @testable import ListenNotesAPI
 
 class ListenNotesAPITests: XCTestCase {
-
+    
+    let defaultTimeout: TimeInterval = 10
+    
     override func setUp() {
         ListenNotesAPI.Config.set(apiKey: "YOUR_API_KEY")
     }
+}
+
+// MARK: Search
+extension ListenNotesAPITests {
     
     func testSearchPodcasts() {
         let expectation = XCTestExpectation()
         ListenNotesAPI.searchPodcasts(
-            withText: LNData.searchText,
-            filter: LNData.searchFilter
+            withText: TestData.searchText,
+            filter: TestData.searchFilter
         ) { result in
             switch result {
             case .success(let searchResults):
@@ -40,8 +46,8 @@ class ListenNotesAPITests: XCTestCase {
     func testSearchEpisodes() {
         let expectation = XCTestExpectation()
         ListenNotesAPI.searchEpisodes(
-            withText: LNData.searchText,
-            filter: LNData.searchFilter
+            withText: TestData.searchText,
+            filter: TestData.searchFilter
         ) { result in
             switch result {
             case .success(let searchResults):
@@ -58,10 +64,14 @@ class ListenNotesAPITests: XCTestCase {
         }
         wait(for: [expectation], timeout: defaultTimeout)
     }
+}
+
+// MARK: Episodes
+extension ListenNotesAPITests {
     
     func testGetEpisode() {
         let expectation = XCTestExpectation()
-        ListenNotesAPI.getEpisode(byId: LNData.episodeId) { result in
+        ListenNotesAPI.getEpisode(byId: TestData.episodeId) { result in
             switch result {
             case .success(let episode):
                 print(episode.title)
@@ -75,7 +85,7 @@ class ListenNotesAPITests: XCTestCase {
     
     func testGetEpisodesBatch() {
         let expectation = XCTestExpectation()
-        ListenNotesAPI.getEpisodesBatch(withIds: LNData.episodeIds) { result in
+        ListenNotesAPI.getEpisodesBatch(withIds: TestData.episodeIds) { result in
             switch result {
             case .success(let episodes):
                 if episodes.isEmpty {
@@ -91,9 +101,45 @@ class ListenNotesAPITests: XCTestCase {
         wait(for: [expectation], timeout: defaultTimeout)
     }
     
+    func testJustListen() {
+        let expectation = XCTestExpectation()
+        ListenNotesAPI.justListen { result in
+            switch result {
+            case .success(let episode):
+                print(episode.title)
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.message)
+            }
+        }
+        wait(for: [expectation], timeout: defaultTimeout)
+    }
+    
+    func testGetSimilarEpisodes() {
+        let expectation = XCTestExpectation()
+        ListenNotesAPI.getSimilarEpisodes(episodeId: TestData.episodeId) { result in
+            switch result {
+            case .success(let episodes):
+                if episodes.isEmpty {
+                    XCTFail("No episodes found")
+                }
+                let titles = episodes.map { $0.title }
+                print(titles)
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.message)
+            }
+        }
+        wait(for: [expectation], timeout: defaultTimeout)
+    }
+}
+
+// MARK: Podcasts
+extension ListenNotesAPITests {
+    
     func testGetPodcast() {
         let expectation = XCTestExpectation()
-        ListenNotesAPI.getPodcast(byId: LNData.podcastId) { result in
+        ListenNotesAPI.getPodcast(byId: TestData.podcastId) { result in
             switch result {
             case .success(let podcast):
                 print(podcast.title)
@@ -108,9 +154,9 @@ class ListenNotesAPITests: XCTestCase {
     func testGetPodcastBatch() {
         let expectation = XCTestExpectation()
         ListenNotesAPI.getPodcastsBatch(
-            withIds: LNData.podcastIds,
-            withRssUrls: LNData.rssUrls,
-            withiTunesIds: LNData.iTunesIds
+            withIds: TestData.podcastIds,
+            withRssUrls: TestData.rssUrls,
+            withiTunesIds: TestData.iTunesIds
         ) { result in
             switch result {
             case .success(let podcasts):
@@ -149,9 +195,9 @@ class ListenNotesAPITests: XCTestCase {
     func testGetBestPodcastsInGenre() {
         let expectation = XCTestExpectation()
         ListenNotesAPI.getBestPodcasts(
-            byGenreId: LNData.genreId,
-            page: LNData.page,
-            regionCode: LNData.regionCode,
+            byGenreId: TestData.genreId,
+            page: TestData.page,
+            regionCode: TestData.regionCode,
             filterExplicit: true
         ) { result in
             switch result {
@@ -169,7 +215,29 @@ class ListenNotesAPITests: XCTestCase {
         }
         wait(for: [expectation], timeout: defaultTimeout)
     }
+    
+    func testGetSimilarPodcasts() {
+        let expectation = XCTestExpectation()
+        ListenNotesAPI.getSimilarPodcasts(podcastId: TestData.podcastId) { result in
+            switch result {
+            case .success(let podcasts):
+                if podcasts.isEmpty {
+                    XCTFail("No podcasts found")
+                }
+                let titles = podcasts.map { $0.title }
+                print(titles)
+                expectation.fulfill()
+            case .failure(let error):
+                XCTFail(error.message)
+            }
+        }
+        wait(for: [expectation], timeout: defaultTimeout)
+    }
+}
 
+// MARK: Reference
+extension ListenNotesAPITests {
+    
     func testGetGenres() {
         let expectation = XCTestExpectation()
         ListenNotesAPI.getGenres { result in
@@ -214,10 +282,12 @@ class ListenNotesAPITests: XCTestCase {
         }
         wait(for: [expectation], timeout: defaultTimeout)
     }
+}
+
+// MARK: Test Data
+extension ListenNotesAPITests {
     
-    let defaultTimeout: TimeInterval = 10
-    
-    final class LNData {
+    private final class TestData {
         static let episodeId = "02f0123246c944e289ee2bb90804e41b"
         static let episodeIds = [
             "c577d55b2b2b483c969fae3ceb58e362",
@@ -252,6 +322,7 @@ class ListenNotesAPITests: XCTestCase {
             let sixMonths: TimeInterval = twoYears / 4
             filter.publishedAfter = Date().addingTimeInterval(-twoYears)
             filter.publishedBefore = Date().addingTimeInterval(-sixMonths)
+            filter.safeMode = .filterExplicit
             return filter
         }()
         static let genreId = 97

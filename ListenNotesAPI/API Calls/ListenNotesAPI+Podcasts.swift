@@ -47,6 +47,21 @@ extension ListenNotesAPI {
                        parameters: params.params,
                        callback: callback)
     }
+    
+    /**
+     Fetch up to 8 podcast recommendations based on the podcast id.
+     
+     */
+    public static func getSimilarPodcasts(
+        podcastId: String,
+        callback: @escaping (Result<[LNPodcast], LNError>) -> ()
+    ) {
+        let parse = convert(map: { (batch: LNSimilarPodcastsBatch) in batch.recommendations },
+                            callback: callback)
+        
+        LNService.call(.podcastRecommendations(podcastId: podcastId),
+                       callback: parse)
+    }
 }
 
 extension ListenNotesAPI {
@@ -119,5 +134,9 @@ extension ListenNotesAPI {
             
             return dict
         }
+    }
+    
+    private struct LNSimilarPodcastsBatch: Codable {
+        let recommendations: [LNPodcast]
     }
 }

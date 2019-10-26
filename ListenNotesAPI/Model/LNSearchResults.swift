@@ -10,7 +10,7 @@ import Foundation
 
 public struct LNPodcastResults: Codable {
     let count: Int
-    let took: Double
+    let took: TimeInterval
     let total: Int
     let podcasts: [LNPodcast]
     let nextOffset: Int
@@ -26,7 +26,7 @@ public struct LNPodcastResults: Codable {
 
 public struct LNEpisodeResults: Decodable {
     let count: Int
-    let took: Double
+    let took: TimeInterval
     let total: Int
     let episodes: [LNEpisode]
     let nextOffset: Int

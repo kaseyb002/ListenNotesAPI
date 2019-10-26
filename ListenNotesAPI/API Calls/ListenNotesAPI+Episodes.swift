@@ -52,6 +52,22 @@ extension ListenNotesAPI {
     public static func justListen(callback: @escaping (Result<LNEpisode, LNError>) -> ()) {
         LNService.call(.justListen, callback: callback)
     }
+    
+    /**
+     Fetch up to 8 episode recommendations based on the episode id.
+     
+     */
+    public static func getSimilarEpisodes(
+        episodeId: String,
+        callback: @escaping (Result<[LNEpisode], LNError>) -> ()
+    ) {
+        
+        let parse = convert(map: { (batch: LNSimilarEpisodesBatch) in batch.recommendations },
+                            callback: callback)
+        
+        LNService.call(.episodeRecommendations(episodeId: episodeId),
+                       callback: parse)
+    }
 }
 
 // MARK: Helper Structs
@@ -77,5 +93,9 @@ extension ListenNotesAPI {
         var params: [String: Any] {
             return [CodingKeys.ids.rawValue: ids.joined(separator: ",")]
         }
+    }
+    
+    private struct LNSimilarEpisodesBatch: Decodable {
+        let recommendations: [LNEpisode]
     }
 }
