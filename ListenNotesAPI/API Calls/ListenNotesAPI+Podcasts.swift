@@ -11,6 +11,11 @@ import Foundation
 // MARK: Podcasts
 extension ListenNotesAPI {
     
+    /**
+    Fetch a podcast by ListenNotes `id`
+    
+    - Parameter byId: ListenNotes `id` of the podcast you want.
+    */
     public static func getPodcast(
         byId id: String,
         callback: @escaping (Result<LNPodcast, LNError>) -> ()
@@ -18,6 +23,15 @@ extension ListenNotesAPI {
         LNService.call(.getPodcast(podcastId: id), callback: callback)
     }
     
+    /**
+    Batch fetch for up to 10 podcasts
+    
+    - Parameter withIds: ListenNotes `id`s of the podcasts you want.
+     
+    - Parameter withRssUrls: RSS urls  of the podcasts you want. Useful for importing.
+     
+    - Parameter withiTunesIds: iTunes `id`s of the podcasts you want.
+    */
     public static func getPodcastsBatch(
         withIds ids: [String]? = nil,
         withRssUrls rssUrls: [String]? = nil,
@@ -32,6 +46,17 @@ extension ListenNotesAPI {
                        callback: parse)
     }
     
+    /**
+    Get the most popular podcasts
+     
+    - Parameter byGenreId: Get most popular for specific genre.
+     
+    - Parameter page: The paged index of results
+     
+    - Parameter regionCode: Restrict results to a specific region.
+     
+    - Parameter filterExplicit: Exclude explicit podcasts; off by default.
+    */
     public static func getBestPodcasts(
         byGenreId genreId: Int? = nil,
         page: Int? = nil,
@@ -64,6 +89,7 @@ extension ListenNotesAPI {
     }
 }
 
+// MARK: Helper Models
 extension ListenNotesAPI {
     
     private struct LNPodcastBatchParams {

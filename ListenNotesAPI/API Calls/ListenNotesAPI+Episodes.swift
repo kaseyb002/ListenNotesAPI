@@ -12,9 +12,9 @@ import Foundation
 extension ListenNotesAPI {
     
     /**
-     Fetch an episode by id
+     Fetch an episode by ListenNotes `id`
      
-     - Parameter id: ListenNotes `id` of the episode you want.
+     - Parameter byId: ListenNotes `id` of the episode you want.
      */
     public static func getEpisode(
         byId id: String,
@@ -28,7 +28,7 @@ extension ListenNotesAPI {
      
      This endpoint could be used to implement custom playlists for individual episodes.
      
-     - Parameter ids: ListenNotes `id`s of the episodes you want.
+     - Parameter withIds: ListenNotes `id`s of the episodes you want.
      */
     public static func getEpisodesBatch(
         withIds ids: [String],
@@ -70,24 +70,18 @@ extension ListenNotesAPI {
     }
 }
 
-// MARK: Helper Structs
+// MARK: Helper Models
 extension ListenNotesAPI {
     
     private struct LNEpisodeBatch: Decodable {
         let episodes: [LNEpisode]
     }
     
-    private struct LNEpisodeBatchParams: Encodable {
+    private struct LNEpisodeBatchParams {
         let ids: [String]
         
         enum CodingKeys: String, CodingKey {
             case ids
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            let idsString = ids.joined(separator: ",")
-            try container.encode(idsString, forKey: .ids)
         }
         
         var params: [String: Any] {

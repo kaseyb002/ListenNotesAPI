@@ -15,11 +15,14 @@ extension LNService {
     static func call<T: Decodable>(_ endpoint: LNEndpoint,
                                    parameters: [String: Any]? = nil,
                                    callback: @escaping (Result<T, LNError>) -> ()) {
-        precondition(ListenNotesAPI.Config.hasSetApiKey,
-                     "ListenNotesAPI Key has not been set. Call with ListenNotesAPI.Config.set(apiKey: String)")
         
         guard let apiKey = ListenNotesAPI.Config.apiKey else {
-            fatalError("Accessing ListenNotesAPI.Config.apiKey before it has been set.")
+            print("""
+                  Accessing ListenNotesAPI.Config.apiKey before it has been set.
+                  Set the api key by calling ListenNotesAPI.Config.set(apiKey: String)
+                  """)
+            callback(.failure(LNError(statusCode: nil, type: .missingAPIKey)))
+            return
         }
         
         var req = URLRequest(url: endpoint.url,

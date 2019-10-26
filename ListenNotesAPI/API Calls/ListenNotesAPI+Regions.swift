@@ -11,6 +11,10 @@ import Foundation
 // MARK: API Calls
 extension ListenNotesAPI {
     
+    /**
+    Fetch full list of support regions with region codes.
+    
+    */
     public static func getRegions(callback: @escaping (Result<[LNRegion], LNError>) -> ()) {
         
         let parse = convert(

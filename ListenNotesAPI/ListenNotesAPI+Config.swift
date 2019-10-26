@@ -16,9 +16,5 @@ extension ListenNotesAPI {
         public static func set(apiKey: String) {
             self.apiKey = apiKey
         }
-        
-        static var hasSetApiKey: Bool {
-            return apiKey != nil
-        }
     }
 }

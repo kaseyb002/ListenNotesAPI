@@ -11,6 +11,10 @@ import Foundation
 // MARK: API Calls
 extension ListenNotesAPI {
     
+    /**
+    Fetch full list of support languages.
+    
+    */
     public static func getLanguages(callback: @escaping (Result<[String], LNError>) -> ()) {
         
         let parse = convert(map: { (response: LNLanguagesResponse) in response.languages },

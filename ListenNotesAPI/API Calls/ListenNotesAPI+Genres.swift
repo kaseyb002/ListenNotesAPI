@@ -11,6 +11,10 @@ import Foundation
 // MARK: API Calls
 extension ListenNotesAPI {
     
+    /**
+    Fetch full list of podcast genres.
+    
+    */
     public static func getGenres(callback: @escaping (Result<[LNGenre], LNError>) -> ()) {
         
         let parse = convert(map: { (response: LNGenresResponse) in response.genres },
@@ -20,10 +24,10 @@ extension ListenNotesAPI {
     }
 }
 
-// MARK: Helper Structs
+// MARK: Helper Models
 extension ListenNotesAPI {
     
-    private struct LNGenresResponse: Codable {
+    private struct LNGenresResponse: Decodable {
         let genres: [LNGenre]
     }
 }

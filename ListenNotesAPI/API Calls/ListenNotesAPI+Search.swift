@@ -83,10 +83,10 @@ extension ListenNotesAPI {
     }
 }
 
-// MARK: Helper Structs
+// MARK: Helper Models
 extension ListenNotesAPI {
     
-    private struct LNSearchParams: Encodable {
+    private struct LNSearchParams {
         let q: String
         let type: MediaType
         let filter: LNSearchFilter?
@@ -109,52 +109,6 @@ extension ListenNotesAPI {
             case language
             case genreIds = "genre_ids"
             case podcastId = "ocid"
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(q, forKey: .q)
-            try container.encode(type.rawValue, forKey: .type)
-            guard let filter = filter else { return }
-            switch filter.sortBy {
-            case .relevance:
-                break
-            case .mostRecent:
-                try container.encode(filter.sortBy.rawValue, forKey: .sortBy)
-            }
-            
-            if !filter.searchInFields.contains(.everything), !filter.searchInFields.isEmpty {
-                let searchFields = filter.searchInFields.map { $0.rawValue }.joined(separator: ",")
-                try container.encode(searchFields, forKey: .searchInFields)
-            }
-            
-            try filter.minMinuteLength.map {
-                try container.encode($0, forKey: .minMinuteLength)
-            }
-            
-            try filter.minMinuteLength.map {
-                try container.encode($0, forKey: .maxMinuteLength)
-            }
-            
-            try filter.language.map {
-                try container.encode($0, forKey: .language)
-            }
-            
-            if !filter.genreIds.isEmpty {
-                let ids = filter.genreIds.map { "\($0)" }.joined(separator: ",")
-                try container.encode(ids, forKey: .genreIds)
-            }
-            
-            try filter.podcastId.map {
-                try container.encode($0, forKey: .podcastId)
-            }
-            
-            switch filter.safeMode {
-            case .off:
-                break
-            case .filterExplicit:
-                try container.encode(filter.safeMode.rawValue, forKey: .safeMode)
-            }
         }
         
         var params: [String: Any] {
@@ -209,7 +163,7 @@ extension ListenNotesAPI {
     }
     
     
-    private struct LNTypeheadParams: Encodable {
+    private struct LNTypeheadParams {
         let q: String
         let includePodcasts: Bool
         let includeGenres: Bool
@@ -220,17 +174,6 @@ extension ListenNotesAPI {
             case includePodcasts = "show_podcasts"
             case includeGenres = "show_genres"
             case filterExplicit = "safe_mode"
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(q, forKey: .q)
-            try container.encode(includePodcasts ? 1 : 0,
-                                 forKey: .includePodcasts)
-            try container.encode(includeGenres ? 1 : 0,
-                                 forKey: .includeGenres)
-            try container.encode(filterExplicit ? 1 : 0,
-                                 forKey: .filterExplicit)
         }
         
         var params: [String: Any] {
