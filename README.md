@@ -22,7 +22,7 @@ ListenNotesAPI.searchPodcasts(withText: "star wars") { result in
 
 
 #### Set API Key
-Before making an calls, you must set your ListenNotes API Key: 
+First you must set your ListenNotes API Key: 
 
 ```swift
 ListenNotesAPI.Config.set(apiKey: "YOUR_API_KEY")
