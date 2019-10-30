@@ -9,9 +9,9 @@
 import Foundation
 
 public struct LNGenre: Codable {
-    let id: Int
-    let name: String
-    let parentId: Int?
+    public let id: Int
+    public let name: String
+    public let parentId: Int?
     
     enum CodingKeys: String, CodingKey {
         case id

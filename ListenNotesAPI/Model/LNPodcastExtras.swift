@@ -9,18 +9,18 @@
 import Foundation
 
 public struct LNPodcastExtras: Codable {
-    let url1: URL?
-    let url2: URL?
-    let url3: URL?
-    let googleUrl: URL?
-    let spotifyUrl: URL?
-    let youtubeUrl: URL?
-    let linkedInUrl: URL?
-    let weChatUrl: URL?
-    let patreonHandle: String?
-    let twitterHandle: String?
-    let facebookHandle: String?
-    let instagramHandle: String?
+    public let url1: URL?
+    public let url2: URL?
+    public let url3: URL?
+    public let googleUrl: URL?
+    public let spotifyUrl: URL?
+    public let youtubeUrl: URL?
+    public let linkedInUrl: URL?
+    public let weChatUrl: URL?
+    public let patreonHandle: String?
+    public let twitterHandle: String?
+    public let facebookHandle: String?
+    public let instagramHandle: String?
     
     enum CodingKeys: String, CodingKey {
         case url1

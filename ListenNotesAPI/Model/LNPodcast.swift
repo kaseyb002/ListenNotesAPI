@@ -9,22 +9,22 @@
 import Foundation
 
 public struct LNPodcast: Codable {
-    let id: String
-    let rss: URL
-    let email: String?
-    let image: URL
-    let title: String
-    let genreIds: [Int]
-    let iTunesId: Int
-    let publisher: String
-    let thumbnail: URL
-    let description: String
-    let totalEpisodes: Int
-    let listenNotesUrl: URL
-    let explicitContent: Bool
-    let latestPubDateMs: Double
-    let earliestPubDateMs: Double
-    let extra: LNPodcastExtras?
+    public let id: String
+    public let rss: URL
+    public let email: String?
+    public let image: URL
+    public let title: String
+    public let genreIds: [Int]
+    public let iTunesId: Int
+    public let publisher: String
+    public let thumbnail: URL
+    public let description: String
+    public let totalEpisodes: Int
+    public let listenNotesUrl: URL
+    public let explicitContent: Bool
+    public let latestPubDateMs: Double
+    public let earliestPubDateMs: Double
+    public let extra: LNPodcastExtras?
     
     enum CodingKeys: String, CodingKey {
         case id

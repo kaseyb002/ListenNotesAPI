@@ -9,11 +9,11 @@
 import Foundation
 
 public struct LNPodcastResults: Codable {
-    let count: Int
-    let took: TimeInterval
-    let total: Int
-    let podcasts: [LNPodcast]
-    let nextOffset: Int
+    public let count: Int
+    public let took: TimeInterval
+    public let total: Int
+    public let podcasts: [LNPodcast]
+    public let nextOffset: Int
     
     enum CodingKeys: String, CodingKey {
         case count
@@ -25,11 +25,11 @@ public struct LNPodcastResults: Codable {
 }
 
 public struct LNEpisodeResults: Decodable {
-    let count: Int
-    let took: TimeInterval
-    let total: Int
-    let episodes: [LNEpisode]
-    let nextOffset: Int
+    public let count: Int
+    public let took: TimeInterval
+    public let total: Int
+    public let episodes: [LNEpisode]
+    public let nextOffset: Int
     
     enum CodingKeys: String, CodingKey {
         case count

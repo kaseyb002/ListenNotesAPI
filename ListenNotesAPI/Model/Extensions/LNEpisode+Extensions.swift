@@ -10,7 +10,7 @@ import Foundation
 
 extension LNEpisode {
     
-    var pubDate: Date {
+    public var pubDate: Date {
         return Date(timeIntervalSince1970: (Double(pubDateMs) / 1000.0))
     }
 }

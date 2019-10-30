@@ -19,11 +19,15 @@ extension ListenNotesAPI {
     - Parameter filter: Add an optional filter to curate results.
     */
     public static func searchPodcasts(
-        withText text: String,
+        with text: String,
         filter: LNSearchFilter? = nil,
+        offset: Int? = nil,
         callback: @escaping (Result<LNPodcastResults, LNError>) -> ()
     ) {
-        let params = LNSearchParams(q: text, type: .podcasts, filter: filter)
+        let params = LNSearchParams(q: text,
+                                    type: .podcasts,
+                                    offset: offset,
+                                    filter: filter)
         LNService.call(.search,
                        parameters: params.params,
                        callback: callback)
@@ -37,11 +41,15 @@ extension ListenNotesAPI {
     - Parameter filter: Add an optional filter to curate results.
     */
     public static func searchEpisodes(
-        withText text: String,
+        with text: String,
         filter: LNSearchFilter? = nil,
+        offset: Int? = nil,
         callback: @escaping (Result<LNEpisodeResults, LNError>) -> ()
     ) {
-        let params = LNSearchParams(q: text, type: .episodes, filter: filter)
+        let params = LNSearchParams(q: text,
+                                    type: .episodes,
+                                    offset: offset,
+                                    filter: filter)
         LNService.call(.search,
                        parameters: params.params,
                        callback: callback)
@@ -66,7 +74,7 @@ extension ListenNotesAPI {
      Note: Only works when `includePodcasts` is `true`.
     */
     public static func typehead(
-        withText text: String,
+        with text: String,
         includePodcasts: Bool = false,
         includeGenres: Bool = false,
         filterExplicit: Bool = false,
@@ -89,6 +97,7 @@ extension ListenNotesAPI {
     private struct LNSearchParams {
         let q: String
         let type: MediaType
+        let offset: Int?
         let filter: LNSearchFilter?
         
         enum MediaType: String {
@@ -99,6 +108,7 @@ extension ListenNotesAPI {
         enum CodingKeys: String, CodingKey {
             case q
             case type
+            case offset
             case sortBy = "sort_by_date"
             case searchInFields = "only_in"
             case minMinuteLength = "len_min"
@@ -115,6 +125,9 @@ extension ListenNotesAPI {
             var dict = [String: Any]()
             dict[CodingKeys.q.rawValue] = q
             dict[CodingKeys.type.rawValue] = type.rawValue
+            offset.map {
+                dict[CodingKeys.offset.rawValue] = $0
+            }
             
             guard let filter = filter else { return dict }
             

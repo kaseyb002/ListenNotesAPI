@@ -9,17 +9,17 @@
 import Foundation
 
 public struct LNBestPodcasts: Decodable {
-    let id: Int
-    let name: String
-    let total: Int
-    let hasNext: Bool
-    let podcasts: [LNPodcast]
-    let parentId: Int?
-    let pageNumber: Int
-    let hasPrevious: Bool
-    let listenNotesUrl: URL
-    let nextPageNumber: Int?
-    let previousPageNumber: Int?
+    public let id: Int
+    public let name: String
+    public let total: Int
+    public let hasNext: Bool
+    public let podcasts: [LNPodcast]
+    public let parentId: Int?
+    public let pageNumber: Int
+    public let hasPrevious: Bool
+    public let listenNotesUrl: URL
+    public let nextPageNumber: Int?
+    public let previousPageNumber: Int?
     
     enum CodingKeys: String, CodingKey {
         case id

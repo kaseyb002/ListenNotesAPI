@@ -9,6 +9,6 @@
 import Foundation
 
 public struct LNRegion: Codable {
-    let code: String
-    let name: String
+    public let code: String
+    public let name: String
 }

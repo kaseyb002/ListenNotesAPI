@@ -9,19 +9,19 @@
 import Foundation
 
 public struct LNEpisode: Decodable {
-    let id: String
-    let title: String
-    let description: String
-    let publisher: String
-    let audio: URL
-    let image: URL
-    let thumbnail: URL
-    let pubDateMs: Int
-    let listenNotesUrl: URL
-    let audioLength: TimeInterval
-    let explicitContent: Bool
-    let podcastId: String
-    let podcastTitle: String
+    public let id: String
+    public let title: String
+    public let description: String
+    public let publisher: String
+    public let audio: URL
+    public let image: URL
+    public let thumbnail: URL
+    public let pubDateMs: Int
+    public let listenNotesUrl: URL
+    public let audioLength: TimeInterval
+    public let explicitContent: Bool
+    public let podcastId: String
+    public let podcastTitle: String
     
     enum CodingKeys: String, CodingKey {
         case id

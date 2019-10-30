@@ -3,25 +3,25 @@ import Foundation
 public struct LNSearchFilter {
     
     /// Default is `.relevance`
-    var sortBy: SortBy = .relevance
+    public var sortBy: SortBy = .relevance
     /// Default is `[.everything]`
-    var searchInFields: Set<Field> = [.everything]
+    public var searchInFields: Set<Field> = [.everything]
     /// This must be `< maxMinuteLength` or `maxMinuteLength == nil`
-    var minMinuteLength: Int?
+    public var minMinuteLength: Int?
     /// This must be `> minMinuteLength` or `minMinuteLength == nil`
-    var maxMinuteLength: Int?
+    public var maxMinuteLength: Int?
     /// This must be `< publishedBefore` or `publishedBefore == nil`
-    var publishedAfter: Date?
+    public var publishedAfter: Date?
     /// This must be `> publishedAfter` or `publishedAfter == nil`
-    var publishedBefore: Date?
+    public var publishedBefore: Date?
     /// Default is `.off`
-    var safeMode: SafeMode = .off
+    public var safeMode: SafeMode = .off
     /// Restrict scope to a specific language. See `getLanguages()` for full list.
-    var language: String?
+    public var language: String?
     /// Restrict scope to specific genres
-    var genreIds = [Int]()
+    public var genreIds = [Int]()
     /// Restrict scope to a specific podcast
-    var podcastId: String?
+    public var podcastId: String?
     
     public enum Field: String, CaseIterable {
         case everything

@@ -9,7 +9,7 @@
 import Foundation
 
 public struct LNTypeahead: Codable {
-    let terms: [String]
-    let genres: [LNGenre]?
-    let podcasts: [LNPodcast]?
+    public let terms: [String]
+    public let genres: [LNGenre]?
+    public let podcasts: [LNPodcast]?
 }
