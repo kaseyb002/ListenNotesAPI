@@ -12,12 +12,12 @@ public struct LNPodcast: Codable {
     public let id: String
     public let rss: URL
     public let email: String?
-    public let image: URL
+    public let image: URL?
     public let title: String
     public let genreIds: [Int]
     public let iTunesId: Int
     public let publisher: String
-    public let thumbnail: URL
+    public let thumbnail: URL?
     public let description: String
     public let totalEpisodes: Int
     public let listenNotesUrl: URL
@@ -47,12 +47,24 @@ public struct LNPodcast: Codable {
         id = try values.decode(String.self, forKey: .id)
         rss = try values.decode(URL.self, forKey: .rss)
         email = try values.decode(String?.self, forKey: .email)
-        image = try values.decode(URL.self, forKey: .image)
+        if
+            let imageString = try values.decode(String?.self, forKey: .image),
+            let imageUrl = URL(string: imageString) {
+            image = imageUrl
+        } else {
+            image = nil
+        }
         title = try LNPodcast.parseTitle(from: decoder)
         genreIds = try values.decode([Int].self, forKey: .genreIds)
         iTunesId = try values.decode(Int.self, forKey: .iTunesId)
         publisher = try LNPodcast.parsePublisher(from: decoder)
-        thumbnail = try values.decode(URL.self, forKey: .thumbnail)
+        if
+            let thumbnailString = try values.decode(String?.self, forKey: .thumbnail),
+            let thumbnailUrl = URL(string: thumbnailString) {
+            thumbnail = thumbnailUrl
+        } else {
+            thumbnail = nil
+        }
         description = try LNPodcast.parseDescription(from: decoder)
         totalEpisodes = try values.decode(Int.self, forKey: .totalEpisodes)
         listenNotesUrl = try values.decode(URL.self, forKey: .listenNotesUrl)

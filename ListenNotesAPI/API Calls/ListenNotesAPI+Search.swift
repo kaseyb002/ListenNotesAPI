@@ -191,7 +191,7 @@ extension ListenNotesAPI {
         
         var params: [String: Any] {
             var dict = [String: Any]()
-            dict[CodingKeys.q.rawValue] = q
+            dict[CodingKeys.q.rawValue] = q.lowercased()
             dict[CodingKeys.includePodcasts.rawValue] = includePodcasts ? 1 : 0
             dict[CodingKeys.includeGenres.rawValue] = includeGenres ? 1 : 0
             dict[CodingKeys.filterExplicit.rawValue] = filterExplicit ? 1 : 0
