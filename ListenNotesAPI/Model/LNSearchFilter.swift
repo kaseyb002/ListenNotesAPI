@@ -38,4 +38,26 @@ public struct LNSearchFilter {
     public enum SafeMode: Int {
         case off, filterExplicit
     }
+    
+    public init(sortBy: SortBy = .relevance,
+                searchInFields: Set<Field> = [.everything],
+                minMinuteLength: Int? = nil,
+                maxMinuteLength: Int? = nil,
+                publishedAfter: Date? = nil,
+                publishedBefore: Date? = nil,
+                safeMode: SafeMode = .off,
+                language: String? = nil,
+                genreIds: [Int] = [Int](),
+                podcastId: String? = nil) {
+        self.sortBy = sortBy
+        self.searchInFields = searchInFields
+        self.minMinuteLength = minMinuteLength
+        self.maxMinuteLength = maxMinuteLength
+        self.publishedAfter = publishedAfter
+        self.publishedBefore = publishedBefore
+        self.safeMode = safeMode
+        self.language = language
+        self.genreIds = genreIds
+        self.podcastId = podcastId
+    }
 }
