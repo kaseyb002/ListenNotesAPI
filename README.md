@@ -4,7 +4,7 @@ ListenNotesAPI lets you search podcasts easily. This is a Swift wrapper for acce
 ## Example
 
 ```swift
-ListenNotesAPI.searchPodcasts(withText: "star wars") { result in
+ListenNotesAPI.searchPodcasts(with: "star wars") { result in
     switch result {
     case .success(let searchResults):
         searchResults.podcasts.forEach { podcast in
