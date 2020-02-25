@@ -16,13 +16,11 @@ extension ListenNotesAPI {
     
     */
     public static func getRegions(callback: @escaping (Result<[LNRegion], LNError>) -> ()) {
-        
-        let parse = convert(
-            map: { (response: LNRegionsResponse) in
-                response.regions.map( { (key, value) in LNRegion(code: key, name: value) })
-            },
-            callback: callback)
-        
+        let parse: (Result<LNRegionsResponse, LNError>) -> () = { result in
+            callback(result.map {
+                $0.regions.map( { (key, value) in LNRegion(code: key, name: value) })
+            })
+        }
         LNService.call(.regions, callback: parse)
     }
 }

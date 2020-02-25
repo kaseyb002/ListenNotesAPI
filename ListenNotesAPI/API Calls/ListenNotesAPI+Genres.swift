@@ -16,10 +16,9 @@ extension ListenNotesAPI {
     
     */
     public static func getGenres(callback: @escaping (Result<[LNGenre], LNError>) -> ()) {
-        
-        let parse = convert(map: { (response: LNGenresResponse) in response.genres },
-                            callback: callback)
-        
+        let parse: (Result<LNGenresResponse, LNError>) -> () = { result in
+            callback(result.map { $0.genres })
+        }
         LNService.call(.genres, callback: parse)
     }
 }

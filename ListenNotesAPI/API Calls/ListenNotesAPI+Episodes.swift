@@ -34,11 +34,10 @@ extension ListenNotesAPI {
         withIds ids: [String],
         callback: @escaping (Result<[LNEpisode], LNError>) -> ()
     ) {
-        
         let params = LNEpisodeBatchParams(ids: ids)
-        
-        let parse = convert(map: { (batch: LNEpisodeBatch) in batch.episodes},
-                            callback: callback)
+        let parse: (Result<LNEpisodeBatch, LNError>) -> () = { result in
+            callback(result.map { $0.episodes })
+        }
         LNService.call(.getEpisodesBatch,
                        parameters: params.params,
                        callback: parse)
@@ -61,10 +60,9 @@ extension ListenNotesAPI {
         episodeId: String,
         callback: @escaping (Result<[LNEpisode], LNError>) -> ()
     ) {
-        
-        let parse = convert(map: { (batch: LNSimilarEpisodesBatch) in batch.recommendations },
-                            callback: callback)
-        
+        let parse: (Result<LNSimilarEpisodesBatch, LNError>) -> () = { result in
+            callback(result.map { $0.recommendations })
+        }
         LNService.call(.episodeRecommendations(episodeId: episodeId),
                        callback: parse)
     }

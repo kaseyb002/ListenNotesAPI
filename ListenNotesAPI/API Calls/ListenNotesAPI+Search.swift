@@ -84,7 +84,6 @@ extension ListenNotesAPI {
                                      includePodcasts: includePodcasts,
                                      includeGenres: includeGenres,
                                      filterExplicit: filterExplicit)
-        
         LNService.call(.typeahead,
                        parameters: params.params,
                        callback: callback)

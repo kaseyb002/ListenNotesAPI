@@ -16,10 +16,9 @@ extension ListenNotesAPI {
     
     */
     public static func getLanguages(callback: @escaping (Result<[String], LNError>) -> ()) {
-        
-        let parse = convert(map: { (response: LNLanguagesResponse) in response.languages },
-                            callback: callback)
-        
+        let parse: (Result<LNLanguagesResponse, LNError>) -> () = { result in
+            callback(result.map { $0.languages })
+        }
         LNService.call(.languages, callback: parse)
     }
 }

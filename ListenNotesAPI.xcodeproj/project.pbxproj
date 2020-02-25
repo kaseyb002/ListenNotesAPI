@@ -33,7 +33,6 @@
 		2697CF662360AC3800C8FB5A /* ListenNotesAPI+Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF652360AC3800C8FB5A /* ListenNotesAPI+Languages.swift */; };
 		2697CF682360AC4100C8FB5A /* ListenNotesAPI+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF672360AC4100C8FB5A /* ListenNotesAPI+Search.swift */; };
 		2697CF6A2360AC4900C8FB5A /* ListenNotesAPI+Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF692360AC4900C8FB5A /* ListenNotesAPI+Episodes.swift */; };
-		2697CF6D2360B09F00C8FB5A /* Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF6C2360B09F00C8FB5A /* Convert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +75,6 @@
 		2697CF652360AC3800C8FB5A /* ListenNotesAPI+Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Languages.swift"; sourceTree = "<group>"; };
 		2697CF672360AC4100C8FB5A /* ListenNotesAPI+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Search.swift"; sourceTree = "<group>"; };
 		2697CF692360AC4900C8FB5A /* ListenNotesAPI+Episodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Episodes.swift"; sourceTree = "<group>"; };
-		2697CF6C2360B09F00C8FB5A /* Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +183,6 @@
 				2697CF47235F833D00C8FB5A /* LNEndpoint.swift */,
 				2697CF4D235F8D9600C8FB5A /* LNService.swift */,
 				2697CF49235F8A2300C8FB5A /* HTTPMethod.swift */,
-				2697CF6C2360B09F00C8FB5A /* Convert.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -301,7 +298,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2697CF46235F81E900C8FB5A /* LNError.swift in Sources */,
-				2697CF6D2360B09F00C8FB5A /* Convert.swift in Sources */,
 				2697CF4E235F8D9600C8FB5A /* LNService.swift in Sources */,
 				2697CF36235F7D6500C8FB5A /* LNPodcast+Extensions.swift in Sources */,
 				2697CF642360AC2F00C8FB5A /* ListenNotesAPI+Genres.swift in Sources */,
