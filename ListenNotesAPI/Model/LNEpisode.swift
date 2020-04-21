@@ -12,10 +12,10 @@ public struct LNEpisode: Decodable {
     public let id: String
     public let title: String
     public let description: String
-    public let publisher: String
+    public let publisher: String?
     public let audio: URL
-    public let image: URL
-    public let thumbnail: URL
+    public let image: URL?
+    public let thumbnail: URL?
     public let pubDateMs: Int
     public let listenNotesUrl: URL
     public let audioLength: TimeInterval
@@ -42,8 +42,10 @@ public struct LNEpisode: Decodable {
         description = try LNEpisode.parseDescription(from: decoder)
         publisher = try LNEpisode.parsePublisher(from: decoder)
         audio = try values.decode(URL.self, forKey: .audio)
-        image = try values.decode(URL.self, forKey: .image)
-        thumbnail = try values.decode(URL.self, forKey: .thumbnail)
+        let imageString = try values.decode(String.self, forKey: .image)
+        image = URL(string: imageString)
+        let thumbnailString = try values.decode(String.self, forKey: .thumbnail)
+        thumbnail = URL(string: thumbnailString)
         pubDateMs = try values.decode(Int.self, forKey: .pubDateMs)
         listenNotesUrl = try values.decode(URL.self, forKey: .listenNotesUrl)
         audioLength = try values.decode(TimeInterval.self, forKey: .audioLength)
@@ -90,7 +92,7 @@ extension LNEpisode {
         return try values.decode(String.self, forKey: .descriptionOriginal)
     }
     
-    static func parsePublisher(from decoder: Decoder) throws -> String {
+    static func parsePublisher(from decoder: Decoder) throws -> String? {
         if
             let values = try? decoder.container(keyedBy: NormalKeys.self),
             let value = try? values.decode(String.self, forKey: .publisher) {
@@ -104,7 +106,7 @@ extension LNEpisode {
         }
         
         let values = try decoder.container(keyedBy: AltKeys.self)
-        return try values.decode(String.self, forKey: .publisherOriginal)
+        return try? values.decode(String.self, forKey: .publisherOriginal)
     }
 }
 

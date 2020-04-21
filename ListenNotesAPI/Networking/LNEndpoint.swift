@@ -26,9 +26,9 @@ enum LNEndpoint {
 
 extension LNEndpoint {
         
-    var baseUrl: String { return "https://listen-api.listennotes.com/api/v2" }
+    var baseUrl: String { "https://listen-api.listennotes.com/api/v2" }
     
-    var url: URL { return URL(string: baseUrl + path)! }
+    var url: URL { URL(string: baseUrl + path)! }
     
     var path: String {
         switch self {

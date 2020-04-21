@@ -16,7 +16,7 @@ public struct LNPodcast: Codable {
     public let title: String
     public let genreIds: [Int]
     public let iTunesId: Int
-    public let publisher: String
+    public let publisher: String?
     public let thumbnail: URL?
     public let description: String
     public let totalEpisodes: Int
@@ -112,7 +112,7 @@ extension LNPodcast {
         return try values.decode(String.self, forKey: .descriptionOriginal)
     }
     
-    static func parsePublisher(from decoder: Decoder) throws -> String {
+    static func parsePublisher(from decoder: Decoder) throws -> String? {
         if
             let values = try? decoder.container(keyedBy: NormalKeys.self),
             let value = try? values.decode(String.self, forKey: .publisher) {
@@ -120,6 +120,6 @@ extension LNPodcast {
         }
         
         let values = try decoder.container(keyedBy: AltKeys.self)
-        return try values.decode(String.self, forKey: .publisherOriginal)
+        return try? values.decode(String.self, forKey: .publisherOriginal)
     }
 }

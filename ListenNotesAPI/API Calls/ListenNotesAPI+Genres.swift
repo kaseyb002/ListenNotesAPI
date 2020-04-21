@@ -13,13 +13,16 @@ extension ListenNotesAPI {
     
     /**
     Fetch full list of podcast genres.
-    
+     
+     - Parameter topLevelOnly: Excludes sub-genres from list. Default is `false`.
     */
-    public static func getGenres(callback: @escaping (Result<[LNGenre], LNError>) -> ()) {
+    public static func getGenres(topLevelOnly: Bool = false,
+                                 callback: @escaping (Result<[LNGenre], LNError>) -> ()) {
         let parse: (Result<LNGenresResponse, LNError>) -> () = { result in
             callback(result.map { $0.genres })
         }
-        LNService.call(.genres, callback: parse)
+        LNService.call(.genres,
+                       callback: parse)
     }
 }
 
