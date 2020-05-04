@@ -33,6 +33,7 @@
 		2697CF662360AC3800C8FB5A /* ListenNotesAPI+Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF652360AC3800C8FB5A /* ListenNotesAPI+Languages.swift */; };
 		2697CF682360AC4100C8FB5A /* ListenNotesAPI+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF672360AC4100C8FB5A /* ListenNotesAPI+Search.swift */; };
 		2697CF6A2360AC4900C8FB5A /* ListenNotesAPI+Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2697CF692360AC4900C8FB5A /* ListenNotesAPI+Episodes.swift */; };
+		26DEB22D246067DA006174A4 /* LNSearchFilter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DEB22C246067DA006174A4 /* LNSearchFilter+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		2697CF652360AC3800C8FB5A /* ListenNotesAPI+Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Languages.swift"; sourceTree = "<group>"; };
 		2697CF672360AC4100C8FB5A /* ListenNotesAPI+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Search.swift"; sourceTree = "<group>"; };
 		2697CF692360AC4900C8FB5A /* ListenNotesAPI+Episodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListenNotesAPI+Episodes.swift"; sourceTree = "<group>"; };
+		26DEB22C246067DA006174A4 /* LNSearchFilter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LNSearchFilter+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			children = (
 				2697CF35235F7D6500C8FB5A /* LNPodcast+Extensions.swift */,
 				2697CF37235F7D6F00C8FB5A /* LNEpisode+Extensions.swift */,
+				26DEB22C246067DA006174A4 /* LNSearchFilter+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				2697CF46235F81E900C8FB5A /* LNError.swift in Sources */,
 				2697CF4E235F8D9600C8FB5A /* LNService.swift in Sources */,
 				2697CF36235F7D6500C8FB5A /* LNPodcast+Extensions.swift in Sources */,
+				26DEB22D246067DA006174A4 /* LNSearchFilter+Extensions.swift in Sources */,
 				2697CF642360AC2F00C8FB5A /* ListenNotesAPI+Genres.swift in Sources */,
 				2697CF662360AC3800C8FB5A /* ListenNotesAPI+Languages.swift in Sources */,
 				2697CF3E235F7F6E00C8FB5A /* LNRegion.swift in Sources */,

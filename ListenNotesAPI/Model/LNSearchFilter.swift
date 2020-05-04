@@ -1,6 +1,6 @@
 import Foundation
 
-public struct LNSearchFilter {
+public struct LNSearchFilter: Encodable {
     
     /// Default is `.relevance`
     public var sortBy: SortBy = .relevance
@@ -23,7 +23,7 @@ public struct LNSearchFilter {
     /// Restrict scope to a specific podcast
     public var podcastId: String?
     
-    public enum Field: String, CaseIterable {
+    public enum Field: String, CaseIterable, Encodable {
         case everything
         case title
         case description
@@ -31,11 +31,11 @@ public struct LNSearchFilter {
         case audio
     }
     
-    public enum SortBy: Int {
+    public enum SortBy: Int, Encodable {
         case relevance, mostRecent
     }
     
-    public enum SafeMode: Int {
+    public enum SafeMode: Int, Encodable {
         case off, filterExplicit
     }
     
