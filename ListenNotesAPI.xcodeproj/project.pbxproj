@@ -122,7 +122,7 @@
 				2697CF1A235F786200C8FB5A /* ListenNotesAPI.h */,
 				2697CF43235F810E00C8FB5A /* ListenNotesAPI.swift */,
 				2697CF4B235F8B0A00C8FB5A /* ListenNotesAPI+Config.swift */,
-				2697CF602360ABE700C8FB5A /* API Calls */,
+				2697CF602360ABE700C8FB5A /* APICalls */,
 				2697CF6B2360AD6C00C8FB5A /* Networking */,
 				2697CF3B235F7F2D00C8FB5A /* Model */,
 				2697CF1B235F786200C8FB5A /* Info.plist */,
@@ -166,7 +166,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		2697CF602360ABE700C8FB5A /* API Calls */ = {
+		2697CF602360ABE700C8FB5A /* APICalls */ = {
 			isa = PBXGroup;
 			children = (
 				2697CF672360AC4100C8FB5A /* ListenNotesAPI+Search.swift */,
@@ -176,7 +176,7 @@
 				2697CF612360AC2000C8FB5A /* ListenNotesAPI+Regions.swift */,
 				2697CF652360AC3800C8FB5A /* ListenNotesAPI+Languages.swift */,
 			);
-			path = "API Calls";
+			path = APICalls;
 			sourceTree = "<group>";
 		};
 		2697CF6B2360AD6C00C8FB5A /* Networking */ = {
