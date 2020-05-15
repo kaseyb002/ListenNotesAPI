@@ -11,10 +11,10 @@ import Foundation
 extension LNPodcast {
     
     public var latestPubDate: Date {
-        return Date(timeIntervalSince1970: (Double(latestPubDateMs) / 1000.0))
+        Date(timeIntervalSince1970: (Double(latestPubDateMs) / 1000.0))
     }
     
     public var earliestPubDate: Date {
-        return Date(timeIntervalSince1970: (Double(earliestPubDateMs) / 1000.0))
+        Date(timeIntervalSince1970: (Double(earliestPubDateMs) / 1000.0))
     }
 }

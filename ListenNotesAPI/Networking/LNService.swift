@@ -26,8 +26,8 @@ extension LNService {
         }
         
         var req = URLRequest(url: endpoint.url,
-                             cachePolicy: .returnCacheDataElseLoad,
-                             timeoutInterval: 60)
+                             cachePolicy: .reloadIgnoringLocalCacheData,
+                             timeoutInterval: 20)
         
         req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         req.setValue(apiKey, forHTTPHeaderField: "X-ListenAPI-Key")
