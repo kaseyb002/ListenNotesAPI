@@ -10,7 +10,7 @@ import Foundation
 
 public struct LNPodcast: Codable {
     public let id: String
-    public let rss: URL
+    public let rss: String
     public let email: String?
     public let image: URL?
     public let title: String
@@ -45,7 +45,7 @@ public struct LNPodcast: Codable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(String.self, forKey: .id)
-        rss = try values.decode(URL.self, forKey: .rss)
+        rss = try values.decode(String.self, forKey: .rss)
         email = try values.decode(String?.self, forKey: .email)
         if
             let imageString = try values.decode(String?.self, forKey: .image),
